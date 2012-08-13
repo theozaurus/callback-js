@@ -89,12 +89,13 @@ Or we could have more sophisticated logic for keeping callbacks:
 
     var callback = new Callback({
       i: 0,
+      max: 4,
       func: function(){
-        i++;
-        console.info("I've run " + this.i + " out of 5 times");
+        this.i++;
+        console.info("I've run " + this.i + " out of " + this.max + " times");
       },
       must_keep: function(){
-        return this.i <= 5;
+        return this.i < this.max;
       }
     });
 
@@ -136,4 +137,3 @@ If you want to run the tests directly in the console just type:
     ..........................................
 
 Or you can check the current status of master using [Travis](http://travis-ci.org/#!/theozaurus/callback-js)
-
