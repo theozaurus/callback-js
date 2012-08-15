@@ -19,6 +19,42 @@ describe("CallbackListSpec", function(){
     subject = new CallbackList();
   });
 
+  describe("creating", function(){
+
+    it("should allow adding a bare callback at the same time", function(){
+      var bare_callback = bare_callback_factory();
+
+      subject = new CallbackList(bare_callback);
+
+      expect(subject.size()).toEqual(1);
+    });
+
+    it("should allow adding an array of bare callbacks at the same time", function(){
+      var bare_callbacks = [bare_callback_factory(),bare_callback_factory()];
+
+      subject = new CallbackList(bare_callbacks);
+
+      expect(subject.size()).toEqual(2);
+    });
+
+    it("should allow adding a callback at the same time", function(){
+      var callback = callback_factory();
+
+      subject = new CallbackList(callback);
+
+      expect(subject.size()).toEqual(1);
+    });
+
+    it("should allow adding an array of callbacks at the same time", function(){
+      var callbacks = [callback_factory(),callback_factory()];
+
+      subject = new CallbackList(callbacks);
+
+      expect(subject.size()).toEqual(2);
+    });
+
+  });
+
   describe("add", function(){
 
     it("should allow adding of one bare callback", function(){

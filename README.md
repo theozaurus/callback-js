@@ -112,6 +112,16 @@ Or we could have more sophisticated logic for keeping callbacks:
     callbacks.handle(); callbacks.size()
     => 0
 
+We can also add callbacks when creating the callback list:
+
+    var callbacks = new CallbackList(function(){ console.info("Hello") });
+    callbacks.size()
+    => 1
+
+    var callbacks = new CallbackList([function(){},function(){}]);
+    callbacks.size()
+    => 2
+
 Tests
 =====
 

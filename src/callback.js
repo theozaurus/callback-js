@@ -117,6 +117,8 @@ if (!com.jivatechnology) { com.jivatechnology = {}; }
       // Initialize list
       this.clear();
 
+      // Add callbacks if any specified on creation
+      if(arguments.length >= 1){ this.add(arguments[0]); }
     };
 
   })();
