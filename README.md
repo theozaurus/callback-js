@@ -122,6 +122,22 @@ We can also add callbacks when creating the callback list:
     callbacks.size()
     => 2
 
+We can specify default must_keep behaviour too:
+
+    var callbacks = new CallbackList({must_keep: true});
+
+    # Or with callbacks at the same time
+
+    var callbacks = new CallbackList([function(){},function(){}], {must_keep: true});
+
+    # Or after initialisation
+
+    var callbacks = new CallbackList();
+    callbacks(true);
+
+    # Now when adding bare callbacks it will set `must_keep` to this value
+    callbacks.add(function(){ console.info("I'll always stay") });
+
 Tests
 =====
 

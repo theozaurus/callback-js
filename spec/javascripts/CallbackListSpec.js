@@ -21,12 +21,28 @@ describe("CallbackListSpec", function(){
 
   describe("creating", function(){
 
+    it("should allow specifying options", function(){
+      subject = new CallbackList({must_keep:true});
+
+      expect(subject.size()).toEqual(0);
+      expect(subject.must_keep()).toEqual(true);
+    });
+
     it("should allow adding a bare callback at the same time", function(){
       var bare_callback = bare_callback_factory();
 
       subject = new CallbackList(bare_callback);
 
       expect(subject.size()).toEqual(1);
+    });
+
+    it("should allow adding a bare callback and specifying options", function(){
+      var bare_callback = bare_callback_factory();
+
+      subject = new CallbackList(bare_callback,{must_keep:true});
+
+      expect(subject.size()).toEqual(1);
+      expect(subject.must_keep()).toEqual(true);
     });
 
     it("should allow adding an array of bare callbacks at the same time", function(){
@@ -37,6 +53,15 @@ describe("CallbackListSpec", function(){
       expect(subject.size()).toEqual(2);
     });
 
+    it("should allow adding an array of bare callbacks and specifying options", function(){
+      var bare_callbacks = [bare_callback_factory(),bare_callback_factory()];
+
+      subject = new CallbackList(bare_callbacks,{must_keep:true});
+
+      expect(subject.size()).toEqual(2);
+      expect(subject.must_keep()).toEqual(true);
+    });
+
     it("should allow adding a callback at the same time", function(){
       var callback = callback_factory();
 
@@ -45,12 +70,48 @@ describe("CallbackListSpec", function(){
       expect(subject.size()).toEqual(1);
     });
 
+    it("should allow adding a callback and specifying options", function(){
+      var callback = callback_factory();
+
+      subject = new CallbackList(callback,{must_keep:true});
+
+      expect(subject.size()).toEqual(1);
+      expect(subject.must_keep()).toEqual(true);
+    });
+
     it("should allow adding an array of callbacks at the same time", function(){
       var callbacks = [callback_factory(),callback_factory()];
 
       subject = new CallbackList(callbacks);
 
       expect(subject.size()).toEqual(2);
+    });
+
+    it("should allow adding an array of callbacks and specifying options", function(){
+      var callbacks = [callback_factory(),callback_factory()];
+
+      subject = new CallbackList(callbacks,{must_keep:true});
+
+      expect(subject.size()).toEqual(2);
+      expect(subject.must_keep()).toEqual(true);
+    });
+
+  });
+
+  describe("must_keep", function(){
+
+    it("should allow getting of the must_keep option", function(){
+      var result = subject.must_keep();
+
+      expect(result).toEqual(false);
+    });
+
+    it("should allow setting of the must_keep option", function(){
+      subject.must_keep(true);
+
+      var result = subject.must_keep();
+
+      expect(result).toEqual(true);
     });
 
   });
@@ -71,6 +132,16 @@ describe("CallbackListSpec", function(){
       subject.add(bare_callbacks);
 
       expect(subject.size()).toEqual(2);
+    });
+
+    it("should set must_keep on bare callbacks to true if set", function(){
+      subject.must_keep(true);
+
+      var bare_callback = bare_callback_factory();
+
+      var result = subject.add(bare_callback);
+
+      expect(result[0].must_keep()).toEqual(true);
     });
 
     it("should allow adding of one callback", function(){
