@@ -61,14 +61,14 @@ if (!com.jivatechnology) { com.jivatechnology = {}; }
     return function(){
 
       // Private functions
-      function make_array(callbacks){
+      var make_array = function(callbacks){
         if(!(callbacks instanceof Array)){
           callbacks = [callbacks];
         }
         return callbacks;
       };
 
-      function marshal(c){
+      var marshal = function(c){
         if(c instanceof scope.Callback){
           return c;
         }else{
@@ -76,7 +76,7 @@ if (!com.jivatechnology) { com.jivatechnology = {}; }
         }
       };
 
-      function marshal_array(callbacks){
+      var marshal_array = function(callbacks){
         var results = [];
         for(var c in callbacks){
           if(callbacks.hasOwnProperty(c)){
@@ -112,10 +112,9 @@ if (!com.jivatechnology) { com.jivatechnology = {}; }
       // Privileged functions
       this.must_keep = function(){
         if(arguments.length > 0){
-          return options["must_keep"] = arguments[0];
-        } else {
-          return options["must_keep"];
+          options["must_keep"] = arguments[0];
         }
+        return options["must_keep"];
       };
 
       this.size = function(){

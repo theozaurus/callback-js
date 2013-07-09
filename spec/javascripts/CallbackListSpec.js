@@ -144,6 +144,19 @@ describe("CallbackListSpec", function(){
       expect(result[0].must_keep()).toEqual(true);
     });
 
+    it("should set must_keep on bare callbacks to true even if another callbacklist is set to false", function(){
+      subject.must_keep(true);
+
+      var other = new CallbackList();
+      other.must_keep(false);
+
+      var bare_callback = bare_callback_factory();
+
+      var result = subject.add(bare_callback);
+
+      expect(result[0].must_keep()).toEqual(true);
+    });
+
     it("should allow adding of one callback", function(){
       var callback = callback_factory();
 
