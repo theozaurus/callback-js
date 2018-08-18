@@ -141,7 +141,7 @@ We can specify default must_keep behaviour too:
 Tests
 =====
 
-All of the tests are written in [Jasmine](http://pivotal.github.com/jasmine/).
+All of the tests are written in [Jasmine](https://jasmine.github.io/).
 To run the tests, you will first need to install [Ruby](http://ruby-lang.org)
 and [Bundler](http://gembundler.com/). Once you have this:
 
